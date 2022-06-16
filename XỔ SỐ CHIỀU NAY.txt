@@ -1,0 +1,4 @@
+INSTALL: open "install.bat"
+RUN:
+- open "launcher.bat"
+- retrieved data should be in "data.txt"
