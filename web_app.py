@@ -6,6 +6,7 @@ import os
 import json
 import extractor
 from PIL import Image
+import tensorflow as tf
 
 app = Flask(__name__, template_folder='./')
 
@@ -13,9 +14,11 @@ app = Flask(__name__, template_folder='./')
 def show_template():
     return render_template("./static/main.html")
 
-UPLOAD_FOLDER = './upload'
+UPLOAD_FOLDER = './input'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+graph = tf.compat.v1.get_default_graph()
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -23,47 +26,29 @@ def allowed_file(filename):
 
 @app.route('/uploader', methods=['GET', 'POST'])  
 def upload_file():
-    INPUT_IMG = os.listdir('./upload')
-    if INPUT_IMG is not None:
-        for upload_img in INPUT_IMG:
-            os.remove(os.path.join('./upload', upload_img))
-            
-    if request.method == 'POST':  
-        # Upload image from POST request
-        file = request.files['file']         
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            
-
-        INPUT_IMG = os.listdir('./upload')
+    with graph.as_default():
+        INPUT_IMG = os.listdir('./input')
         if INPUT_IMG is not None:
-            img = Image.open(os.path.join('./upload', INPUT_IMG[0]))
-        else:
-            print('Cant read image')
-
-        input_img = img.copy()
-        extractor.detect(input_img)
-        
-        result = extractor.ocr_extract()
-        
-        # response = ("No: " + result[0] + "\n" + 
-        #             "Full name: " + result[1] + "\n" + 
-        #             "Date of Birth: " + result[2] + "\n" + 
-        #             "Nationality: " + result[3] + "\n" + 
-        #             "Adress: " + result[4] + "\n" + 
-        #             "Class: " + result[5] + "\n" + 
-        #             "Expires: " + result[6]
-        #            )
-        
-        response = {"data": result}
+            for upload_img in INPUT_IMG:
+                os.remove(os.path.join('./input', upload_img))
+                
+        if request.method == 'POST':  
+            # Upload image from POST request
+            file = request.files['file']         
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                
+            result = extractor.main()
+            
+            print(result)
+            
+            response = {"data": result}
         
         return jsonify(response)
     
-    else: 
-        return "fail"
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(host='0.0.0.0',port='8080',debug = True)
 
 	

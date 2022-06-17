@@ -15,28 +15,28 @@ import sys
 import shutil
 
 # Detect informations's areas in Driving License image and save them in cropped images
-def detect(img):
+def detect():
     # Model
     model = torch.hub.load('./yolov5', 'custom', path='./yolov5/runs/train/yolov5s_results/weights/last.pt', source='local')
 
     # Images
-    # im = './input/input.jpg'  # or file, Path, URL, PIL, OpenCV, numpy, list
+    im = './input/input.jpg'  # or file, Path, URL, PIL, OpenCV, numpy, list
 
     # Inference
-    results = model(img)
+    results = model(im)
 
     # Results
     #results.show()  # or .show(), .save(), .crop(), .pandas(), etc.
 
     #results.xyxy[0]  # im predictions (tensor)
     #print(results.pandas().xyxy[0])
-    results.crop(img)
+    results.crop(im)
 
 # Extract the text information from cropped images
 def ocr_extract():
     config = Cfg.load_config_from_name('vgg_transformer')
-    # config['weights'] = './weights/transformerocr.pth'
-    config['weights'] = 'https://drive.google.com/uc?id=13327Y1tz1ohsm5YZMyXVMPIOjoOA0OaA'
+    config['weights'] = './transformerocr.pth'
+    # config['weights'] = 'https://drive.google.com/uc?id=13327Y1tz1ohsm5YZMyXVMPIOjoOA0OaA'
     config['cnn']['pretrained']=False
     config['device'] = 'cpu'
     config['predictor']['beamsearch']=False
@@ -142,10 +142,10 @@ def reset():
     except OSError as e:
         print("Error: %s - %s." % (e.filename, e.strerror))
 
-def main(img):
-    detect(img)
-    print(ocr_extract())
+def main():
+    detect()
+    data = ocr_extract()
     reset()
-
+    return data
 # if __name__ == '__main__':
 #     main()
