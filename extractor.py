@@ -14,9 +14,9 @@ from vietocr.tool.config import Cfg
 import sys
 import shutil
 
+# Detect informations's areas in Driving License image and save them in cropped images
 def detect():
     # Model
-    #model = torch.hub.load('ultralytics/yolov5', 'custom', r'D:\UIT\CS532\final_project\yolov5\runs\train\yolov5s_results\weights\last.pt')  # or yolov5m, yolov5l, yolov5x, etc.
     model = torch.hub.load('./yolov5', 'custom', path='./yolov5/runs/train/yolov5s_results/weights/last.pt', source='local')
 
     # Images
@@ -32,6 +32,7 @@ def detect():
     #print(results.pandas().xyxy[0])
     results.crop(im)
 
+# Extract the text information from cropped images
 def ocr_extract():
     config = Cfg.load_config_from_name('vgg_transformer')
     config['weights'] = './transformerocr.pth'
@@ -130,8 +131,9 @@ def ocr_extract():
     
     return [id_no, name, dob, nation, address, lc_class, exp]
 
+# Delete old files to avoid errors
 def reset():
-    # Get directory name
+    # Cropped images from detection dir
     mydir= './runs/detect/exp'
 
     try:
