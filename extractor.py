@@ -1,3 +1,5 @@
+import torch
+
 from datetime import datetime
 import os
 from email.headerregistry import Address
@@ -9,14 +11,34 @@ import vietocr
 from vietocr.tool.predictor import Predictor
 from vietocr.tool.config import Cfg
 
-config = Cfg.load_config_from_name('vgg_transformer')
+import sys
+import shutil
 
-config['weights'] = './transformerocr.pth'
-config['cnn']['pretrained']=False
-config['device'] = 'cpu'
-config['predictor']['beamsearch']=False
+def detect():
+    # Model
+    #model = torch.hub.load('ultralytics/yolov5', 'custom', r'D:\UIT\CS532\final_project\yolov5\runs\train\yolov5s_results\weights\last.pt')  # or yolov5m, yolov5l, yolov5x, etc.
+    model = torch.hub.load('./yolov5', 'custom', path='./yolov5/runs/train/yolov5s_results/weights/last.pt', source='local')
 
-def extract():
+    # Images
+    im = './input/input.jpg'  # or file, Path, URL, PIL, OpenCV, numpy, list
+
+    # Inference
+    results = model(im)
+
+    # Results
+    #results.show()  # or .show(), .save(), .crop(), .pandas(), etc.
+
+    #results.xyxy[0]  # im predictions (tensor)
+    #print(results.pandas().xyxy[0])
+    results.crop(im)
+
+def ocr_extract():
+    config = Cfg.load_config_from_name('vgg_transformer')
+    config['weights'] = './transformerocr.pth'
+    config['cnn']['pretrained']=False
+    config['device'] = 'cpu'
+    config['predictor']['beamsearch']=False
+
     detector = Predictor(config)
 
     wf = open('./data.txt', 'w', encoding="utf-8")
@@ -108,8 +130,19 @@ def extract():
     
     return [id_no, name, dob, nation, address, lc_class, exp]
 
+def reset():
+    # Get directory name
+    mydir= './runs/detect/exp'
+
+    try:
+        shutil.rmtree(mydir)
+    except OSError as e:
+        print("Error: %s - %s." % (e.filename, e.strerror))
+
 def main():
-    extract()
+    detect()
+    print(ocr_extract())
+    reset()
 
 if __name__ == '__main__':
-    print(extract())
+    main()

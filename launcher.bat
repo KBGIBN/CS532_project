@@ -1,6 +1,5 @@
 @echo Running...
-python detect.py
-python ocr.py
+python extractor.py
 
 
 
