@@ -31,9 +31,9 @@ conda install -c anaconda pip
 pip install -r requirements.txt
 ```
 ### Tải weight của Yolov5 và VietOCR
-Tải weight tại: https://drive.google.com/drive/u/1/folders/1ZYBLMrWoleMNC3yyAFLfPO9PXCA3HdMB
+Tải weight và model yolov5 tại: https://drive.google.com/drive/u/1/folders/1ZYBLMrWoleMNC3yyAFLfPO9PXCA3HdMB
 
-File weight của VietOCR là transformerocr.pth phải được lưu trong folder CS532_project.  
+File weight của VietOCR là transformerocr.pth và folder của model yolov5 phải được lưu trong folder CS532_project.  
 
 ### Chạy chương trình 
 Có thể sử dụng
