@@ -16,22 +16,22 @@ dotenv_path = os.path.join(os.path.dirname(__file__), '.env')  # Path to .env fi
 load_dotenv(dotenv_path)
 
 app = Flask(__name__, template_folder='./')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://gkbuqaaatbfyli:4b3f2f5a61e6721431cc313c5e102a8f8c66198993abb38504d6b3a0901de41c@ec2-52-72-56-59.compute-1.amazonaws.com:5432/d7cdcbkmnad8pj'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://gkbuqaaatbfyli:4b3f2f5a61e6721431cc313c5e102a8f8c66198993abb38504d6b3a0901de41c@ec2-52-72-56-59.compute-1.amazonaws.com:5432/d7cdcbkmnad8pj'
 
 # Initialize the database
-db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 
-# Create db model
-class Information(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    No = db.Column(db.String(12), nullable=False)
-    Name = db.Column(db.String(50), nullable=False)
-    DoB = db.Column(db.Date, nullable=False)
-    Nationality = db.Column(db.String(50), nullable=False)
-    Address = db.Column(db.String(100), nullable=False)
-    Class = db.Column(db.String(20), nullable=False)
-    Expires = db.Column(db.String(20), nullable=False)
-    date_added = db.Column(db.DateTime, default=datetime.utcnow)
+# # Create db model
+# class Information(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     No = db.Column(db.String(12), nullable=False)
+#     Name = db.Column(db.String(50), nullable=False)
+#     DoB = db.Column(db.Date, nullable=False)
+#     Nationality = db.Column(db.String(50), nullable=False)
+#     Address = db.Column(db.String(100), nullable=False)
+#     Class = db.Column(db.String(20), nullable=False)
+#     Expires = db.Column(db.String(20), nullable=False)
+#     date_added = db.Column(db.DateTime, default=datetime.utcnow)
 
     # def __repr__(self):
     #     return '<Name %r>' % self.id
