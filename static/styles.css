@@ -14,27 +14,36 @@ body {
     min-height: 100vh;
     background: #e0eafc;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #cfdef3, #e0eafc);
+    background: -webkit-linear-gradient(to right, #ffffff, #ffffff);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #cfdef3, #e0eafc);
+    background: linear-gradient(to right, #ffffff, #ffffff);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.img_uit,
-.img_cs {
+.img_uit {
     display: inline-block;
 }
 
-.img_uit img,
-.img_cs img {
-    width: 150px;
+.img_uit img {
+    width: 180x;
+    height: 180px;
+}
+
+.img_arrow {
+    display: block;
+}
+
+.img_arrow img {
+    width: 120x;
+    height: 120px;
+    margin-top: 100px;
 }
 
 h1 {
     color: black;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 500;
-    margin: 0 0 1.0rem 0;
+    margin: 0 0 4.0rem 0;
     /*top right bottom left*/
     /* background: -webkit-linear-gradient(#fff, #999); */
     text-align: center;
@@ -58,9 +67,10 @@ h4 {
 .container,
 .person {
     max-width: 650px;
-    width: 100%;
+    width: 500px;
+    height: 400px;
     padding: 20px 30px;
-    background: #fff;
+    background: #e0eafc;
     border-radius: 20px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     font-size: 30px;
@@ -83,23 +93,24 @@ h4 {
     line-height: 30px;
     font-weight: 500;
     /* margin-left: 20px; */
-    font-size: 25px;
+    font-size: 22px;
 }
 
 .drag-area {
-    height: 400px;
+    height: 300px;
     border: 3px dashed #e0eafc;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 35px auto;
+    margin: 20px auto;
 }
 
 h3 {
     margin-bottom: 20px;
     font-weight: 500;
+    font-size: 30px;
 }
 
 .drag-area .icon {
@@ -150,6 +161,7 @@ h3 {
     color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 20px;
 }
 
 .btn-extract:hover {
@@ -176,8 +188,8 @@ h3 {
 }
 
 .loading_wrapper {
-    width: 200px;
-    height: 60px;
+    width: 400px;
+    height: 100px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -264,9 +276,10 @@ h3 {
 
 .loading_wrapper span {
     position: absolute;
-    top: 75px;
+    top: 20px;
+    left: 90px;
     font-family: 'Times New Roman', cursive;
-    font-size: 28px;
+    font-size: 35px;
     letter-spacing: 8px;
     /*12*/
     color: #fff;
@@ -306,4 +319,71 @@ h3 {
 	}
 	
 	&:after { transform: rotate(-45deg); } */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+ :root {
+    --bg: #1c1717;
+}
+
+
+/* body {
+    min-height: 100vh;
+    background: var(--bg);
+    display: grid;
+    place-items: center;
+} */
+
+@property --a {
+    initial-value: 0deg;
+    inherits: false;
+    syntax: '<angle>';
+}
+
+@property --h {
+    initial-value: 0;
+    inherits: false;
+    syntax: '<number>';
+}
+
+.loader {
+    padding: 2rem 4rem;
+    font-family: 'Times New Roman';
+    font-weight: bold;
+    color: #fff;
+    border-style: solid;
+    border-width: 1vmin;
+    font-size: 2rem;
+    --charge: hsl(var(--h, 0), 80%, 50%);
+    -o-border-image: conic-gradient(var(--charge) var(--a), transparent calc(var(--a) + 0.5deg)) 30;
+    border-image: conic-gradient(var(--charge) var(--a), transparent calc(var(--a) + 0.5deg)) 30;
+    -webkit-animation: load 2s infinite ease-in-out;
+    animation: load 2s infinite ease-in-out;
+}
+
+@-webkit-keyframes load {
+    0%,
+    10% {
+        --a: 0deg;
+        --h: 0;
+    }
+    100% {
+        --a: 360deg;
+        --h: 100;
+    }
+}
+
+@keyframes load {
+    0%,
+    10% {
+        --a: 0deg;
+        --h: 0;
+    }
+    100% {
+        --a: 360deg;
+        --h: 100;
+    }
 }

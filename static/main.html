@@ -17,17 +17,14 @@
 
 <body>
     <div class="logo">
-        <div class="img_cs">
-            <img src="static/logo/uit_logo.png" alt="cs.png" />
-        </div>
         <div class="img_uit">
-            <img src="static/logo/cs_logo.png" alt="uit.png" />
+            <img src="static/logo/uit.png" alt="uit.png" />
         </div>
     </div>
     <h1>Vietnamese Driving License Extractor </h1>
 
     <div class="overlay">
-        <div class="loading_wrapper">
+        <!-- <div class="loading_wrapper">
             <div class="circle"></div>
             <div class="circle"></div>
             <div class="circle"></div>
@@ -35,8 +32,13 @@
             <div class="shadow"></div>
             <div class="shadow"></div>
             <span>Loading...</span>
+        </div> -->
+        <div class="loading_wrapper">
+            <div class="loader"></div>
+            <span>Loading...</span>
         </div>
     </div>
+
     <div class="main">
         <div class="container">
             <form enctype="multipart/form-data">
@@ -47,10 +49,10 @@
                         <i class="fas fa-images"></i>
                     </div>
                     <span class="header">Drag & Drop</span>
-                    <span class="header">or <span class="button">Click here to browse</span></span>
+                    <span class="header">or <span class="button">Click here to upload</span></span>
                     <input type="file" name="file" hidden />
                     <span class="support">Supports: JPEG, JPG, PNG</span>
-                    <span class="note">Image of your ID card should be visible at 4 corners and make sure it is front side </span>
+                    <span class="note"> Driving License image should be visible at 4 corners and make sure it's front side </span>
                 </div>
 
                 <div class="container__submit">
@@ -61,8 +63,19 @@
             </form>
         </div>
 
+        <!-- <div class="container__submit">
+            <div>
+                <input type="submit" onclick="loading_on()" value="Extract" class="btn-extract" id="submitbtn" />
+            </div>
+        </div> -->
+
+        <div class="img_arrow">
+            <img src="static/logo/arrow.jpg" alt="arrow.jpg" />
+        </div>
+
+
         <div class="person">
-            <h3>Your ID information:</h3>
+            <h3>Your Driving License Information:</h3>
             <!-- <div class="person__img"></div> -->
             <div class="person__info">
                 <span class="info__id">No: </span><br />
