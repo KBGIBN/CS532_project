@@ -13,7 +13,7 @@ import shutil
 # Detect informations's areas in Driving License image and save them in cropped images
 def detect():
     # Model
-    model = torch.hub.load('./yolov5', 'custom', path='./runs/train/yolov5s_results/weights/last.pt', source='local')
+    model = torch.hub.load('./yolov5', 'custom', path='./yolov5/runs/train/yolov5s_results/weights/last.pt', source='local')
 
     # Images
     im = './input/input.jpg'  # or file, Path, URL, PIL, OpenCV, numpy, list

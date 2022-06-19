@@ -9,7 +9,7 @@ from PIL import Image
 import time
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
-from datatime import datetime
+from datetime import datetime
 # import tensorflow as tf
 
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')  # Path to .env file
