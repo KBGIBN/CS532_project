@@ -1,7 +1,7 @@
 # CS532_Project
 # Vietnamese Driving License Information Extractor
 
-Chương trình sẽ detect các vị trí có thông tin quan trọng với Yolov5, sau đó dùng VietOCR để đọc text có trong các vị trí đã detect được.
+Chương trình sẽ detect các vị trí có thông tin quan trọng trong giấy phép lái xe với Yolov5, sau đó dùng VietOCR để đọc text có trong các vị trí đã detect được.
 
 ## Danh sách thành viên
 - Hoàng Ngọc Bá Thi
@@ -47,4 +47,6 @@ python app.py
 Khi server đã được khởi chạy, truy cập vào địa chỉ: http://127.0.0.1:5000
 
 Ta sẽ được giao diện như sau: 
-![demo](demo.jpg)
+![demo](demo.png)
+
+Ta có thể kéo thả file hoặc chọn ảnh từ máy tính, sau đó bấm nút Extract và đợi một lúc ta sẽ có được kết quả.
