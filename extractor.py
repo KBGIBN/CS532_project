@@ -1,16 +1,12 @@
-import torch
-
 from datetime import datetime
 import os
 from email.headerregistry import Address
 import torch
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from PIL import Image
-
 import vietocr
 from vietocr.tool.predictor import Predictor
 from vietocr.tool.config import Cfg
-
 import sys
 import shutil
 
