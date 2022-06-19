@@ -1,4 +1,4 @@
-### CS532_project
+# CS532_Project
 # Vietnamese Driving License Information Extractor
 
 ## Danh sách thành viên
